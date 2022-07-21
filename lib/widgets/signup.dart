@@ -12,22 +12,26 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
   bool _obscuretext = true;
+  //password validator=========================================
   final passwordValidator = MultiValidator([
     RequiredValidator(errorText: 'password is required'),
     MinLengthValidator(8, errorText: 'password must be at least 8 digits long'),
     PatternValidator(r'(?=.*?[#?!@$%^&*-])',
         errorText: 'passwords must have at least one special character')
   ]);
+  //email validator===========================================
   final emailvalidator = MultiValidator([
     RequiredValidator(errorText: 'Email is required.'),
     EmailValidator(errorText: 'Enter valid email address.')
   ]);
+  //user name validator=========================================
   final usernamevalidator = MultiValidator([
     RequiredValidator(errorText: 'User name is required'),
     MinLengthValidator(6, errorText: 'user name must be at leat 6 digits long')
   ]);
 
   late String password;
+  //validate function executes on button press====================
   void validate() {
     if (formkey.currentState!.validate()) {
       Navigator.push(
@@ -78,6 +82,7 @@ class _SignUpState extends State<SignUp> {
                               thickness: 2,
                               color: Color.fromRGBO(0, 0, 0, 0.63),
                             ),
+                            //user name input============================
                             TextFormField(
                               validator: usernamevalidator,
                               keyboardType: TextInputType.name,
@@ -87,9 +92,13 @@ class _SignUpState extends State<SignUp> {
                                 labelStyle: TextStyle(letterSpacing: 1.0),
                               ),
                             ),
+                            //user name input closed============================
+
                             const SizedBox(
                               height: 10.0,
                             ),
+                            //email input field================================
+
                             TextFormField(
                               keyboardType: TextInputType.emailAddress,
                               autocorrect: false,
@@ -99,6 +108,8 @@ class _SignUpState extends State<SignUp> {
                                 labelStyle: TextStyle(letterSpacing: 1.0),
                               ),
                             ),
+                            //email input field closed================================
+
                             const SizedBox(
                               height: 10.0,
                             ),
