@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './checkmail.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 
 class ResetPassword extends StatefulWidget {
   const ResetPassword({Key? key}) : super(key: key);
@@ -9,6 +10,21 @@ class ResetPassword extends StatefulWidget {
 }
 
 class _ResetPasswordState extends State<ResetPassword> {
+  final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
+  final emailvalidator = MultiValidator([
+    RequiredValidator(errorText: 'Email is required.'),
+    EmailValidator(errorText: 'Enter valid email address.')
+  ]);
+  void validate() {
+    if (_formkey.currentState!.validate()) {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const CheckMail(),
+          ));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,11 +63,15 @@ class _ResetPasswordState extends State<ResetPassword> {
                       const SizedBox(
                         height: 30,
                       ),
-                      TextFormField(
-                        decoration: const InputDecoration(
-                            labelText: 'Email',
-                            border: OutlineInputBorder(),
-                            hintText: 'Enter your Email'),
+                      Form(
+                        key: _formkey,
+                        child: TextFormField(
+                          validator: emailvalidator,
+                          decoration: const InputDecoration(
+                              labelText: 'Email',
+                              border: OutlineInputBorder(),
+                              hintText: 'Enter your Email'),
+                        ),
                       ),
                       const SizedBox(
                         height: 20,
@@ -60,13 +80,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                         child: SizedBox(
                           width: 200,
                           child: ElevatedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const CheckMail(),
-                                  ));
-                            },
+                            onPressed: validate,
                             style: ElevatedButton.styleFrom(
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(20.0))),
