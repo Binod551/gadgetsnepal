@@ -175,6 +175,28 @@ class _SignUpState extends State<SignUp> {
                             const SizedBox(
                               height: 10.0,
                             ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Text(
+                                  'Already a member?',
+                                  style: TextStyle(letterSpacing: 1.0),
+                                ),
+                                TextButton(
+                                    onPressed: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                const LoginPage(),
+                                          ));
+                                    },
+                                    child: const Text(
+                                      'Login',
+                                      style: TextStyle(letterSpacing: 1.0),
+                                    ))
+                              ],
+                            )
                           ]),
                     ),
                   ),
