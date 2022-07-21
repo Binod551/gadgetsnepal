@@ -47,10 +47,6 @@ class _SignUpState extends State<SignUp> {
     return SafeArea(
       child: Scaffold(
           backgroundColor: Colors.purple,
-          appBar: AppBar(
-            title: const Text('Gadgets Nepal'),
-            centerTitle: true,
-          ),
           body: Center(
             child: SizedBox(
               height: 500.0,

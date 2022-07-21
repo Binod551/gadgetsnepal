@@ -32,7 +32,8 @@ class _LoginPageState extends State<LoginPage> {
       Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const HomePage(),//naviagte to homepage after validation
+            builder: (context) =>
+                const HomePage(), //naviagte to homepage after validation
           ));
     }
   }
@@ -43,13 +44,9 @@ class _LoginPageState extends State<LoginPage> {
     return SafeArea(
       child: Scaffold(
           backgroundColor: Colors.purple,
-          appBar: AppBar(
-            title: const Text('Gadgets Nepal'),
-            centerTitle: true,
-          ),
           body: Center(
             child: SizedBox(
-              height: 400.0,
+              height: 450.0,
               width: 400.0,
               child: Card(
                 elevation: 10.0,
@@ -166,14 +163,14 @@ class _LoginPageState extends State<LoginPage> {
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) =>
-                                                const SignUp(),//navigates to signup page------
+                                                const SignUp(), //navigates to signup page------
                                           ));
                                     },
                                     child: const Text(
                                       'SignUp',
                                       style: TextStyle(letterSpacing: 1.0),
                                     )),
-                                    //text button closed-------------------
+                                //text button closed-------------------
                               ],
                             ),
                           ]),

@@ -29,10 +29,6 @@ class _ResetPasswordState extends State<ResetPassword> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.purple,
-      appBar: AppBar(
-        title: const Text('Gagdets Nepal'),
-        centerTitle: true,
-      ),
       body: Center(
         child: SizedBox(
             height: 500,

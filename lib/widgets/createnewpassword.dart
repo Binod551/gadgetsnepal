@@ -34,10 +34,6 @@ class _NewPasswordState extends State<NewPassword> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.purple,
-        appBar: AppBar(
-          title: const Text('Gadgets Nepal'),
-          centerTitle: true,
-        ),
         body: Center(
           child: Container(
             padding: const EdgeInsets.all(10),
