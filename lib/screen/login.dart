@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-import 'package:gadgetsnepal/widgets/homepage.dart';
+import 'package:gadgetsnepal/screen/homepage.dart';
 import './signup.dart';
 import './resetpassword.dart';
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './checkmail.dart';
+import 'checkmail.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 
 class ResetPassword extends StatefulWidget {

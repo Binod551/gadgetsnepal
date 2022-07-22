@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_carousel_slider/carousel_slider_indicators.dart';
-import 'package:gadgetsnepal/widgets/login.dart';
+import 'package:gadgetsnepal/screen/featured_product.dart';
+import 'package:gadgetsnepal/screen/login.dart';
+import 'package:gadgetsnepal/screen/product_list.dart';
 import 'package:gadgetsnepal/widgets/products_widget.dart';
 import 'package:flutter_carousel_slider/carousel_slider.dart';
 
@@ -13,6 +15,12 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
+  bool homecolor = false;
+  bool cartcolor = false;
+  bool contactcolor = false;
+  bool aboutcolor = false;
+  bool logoutcolor = false;
+
   Widget _buildproductcategory(String image) {
     return GestureDetector(
       onTap: () {},
@@ -41,6 +49,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           ListTile(
+            selected: homecolor,
             leading: const Icon(
               Icons.home,
               color: Colors.black,
@@ -50,6 +59,13 @@ class _HomePageState extends State<HomePage> {
               style: TextStyle(letterSpacing: 1.0),
             ),
             onTap: () {
+              setState(() {
+                homecolor = true;
+                cartcolor = false;
+                contactcolor = false;
+                aboutcolor = false;
+                logoutcolor = false;
+              });
               Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -58,7 +74,16 @@ class _HomePageState extends State<HomePage> {
             },
           ),
           ListTile(
-            onTap: () {},
+            selected: cartcolor,
+            onTap: () {
+              setState(() {
+                homecolor = false;
+                cartcolor = true;
+                contactcolor = false;
+                aboutcolor = false;
+                logoutcolor = false;
+              });
+            },
             leading: const Icon(Icons.shopping_cart),
             title: const Text(
               'Cart',
@@ -66,7 +91,16 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           ListTile(
-            onTap: () {},
+            selected: contactcolor,
+            onTap: () {
+              setState(() {
+                homecolor = false;
+                cartcolor = false;
+                contactcolor = true;
+                aboutcolor = false;
+                logoutcolor = false;
+              });
+            },
             leading: const Icon(Icons.phone),
             title: const Text(
               'Contact us',
@@ -74,7 +108,16 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           ListTile(
-            onTap: () {},
+            selected: aboutcolor,
+            onTap: () {
+              setState(() {
+                homecolor = false;
+                cartcolor = false;
+                contactcolor = false;
+                aboutcolor = true;
+                logoutcolor = false;
+              });
+            },
             leading: const Icon(Icons.info),
             title: const Text(
               'About',
@@ -82,12 +125,20 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           ListTile(
+            selected: logoutcolor,
             leading: const Icon(Icons.logout),
             title: const Text(
               'Log out',
               style: TextStyle(letterSpacing: 1.0),
             ),
             onTap: () {
+              setState(() {
+                homecolor = false;
+                cartcolor = false;
+                contactcolor = false;
+                aboutcolor = false;
+                logoutcolor = true;
+              });
               Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -173,16 +224,25 @@ class _HomePageState extends State<HomePage> {
                   height: 100,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      Text(
+                    children: [
+                      const Text(
                         'Featured',
                         style: TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),
-                      Text(
-                        'See All',
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.of(context)
+                              .pushReplacement(MaterialPageRoute(
+                            builder: (context) =>
+                                const FeaturedProduct(name: 'feature'),
+                          ));
+                        },
+                        child: const Text(
+                          'See All',
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
                       )
                     ],
                   ),
@@ -236,16 +296,26 @@ class _HomePageState extends State<HomePage> {
                   width: double.infinity,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      Text(
+                    children: [
+                      const Text(
                         'New Archives',
                         style: TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),
-                      Text(
-                        'See All',
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    const ProductList(name: 'Archive'),
+                              ));
+                        },
+                        child: const Text(
+                          'See All',
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
                       )
                     ],
                   ),

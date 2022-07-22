@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gadgetsnepal/widgets/login.dart';
+import 'package:gadgetsnepal/screen/login.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Gadgets Nepal',
       theme: ThemeData(
         // This is the theme of your application.
         //

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gadgetsnepal/widgets/login.dart';
+import 'package:gadgetsnepal/screen/login.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 
 class NewPassword extends StatefulWidget {

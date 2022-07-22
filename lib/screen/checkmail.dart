@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gadgetsnepal/widgets/createnewpassword.dart';
-import 'package:gadgetsnepal/widgets/resetpassword.dart';
+import 'package:gadgetsnepal/screen/createnewpassword.dart';
+import 'package:gadgetsnepal/screen/resetpassword.dart';
 
 class CheckMail extends StatefulWidget {
   const CheckMail({Key? key}) : super(key: key);
