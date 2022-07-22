@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_carousel_slider/carousel_slider_indicators.dart';
 import 'package:gadgetsnepal/widgets/login.dart';
 import 'package:gadgetsnepal/widgets/products_widget.dart';
+import 'package:flutter_carousel_slider/carousel_slider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -30,12 +32,23 @@ class _HomePageState extends State<HomePage> {
       drawer: Drawer(
           child: ListView(
         children: [
+          const UserAccountsDrawerHeader(
+            accountName: Text('Rijan Kunwar'),
+            accountEmail: Text('Rijan_Kunwar@gmail.com'),
+            currentAccountPicture: CircleAvatar(
+              maxRadius: 45,
+              backgroundImage: AssetImage('assets/rijan.jpg'),
+            ),
+          ),
           ListTile(
             leading: const Icon(
               Icons.home,
               color: Colors.black,
             ),
-            title: const Text('Home'),
+            title: const Text(
+              'Home',
+              style: TextStyle(letterSpacing: 1.0),
+            ),
             onTap: () {
               Navigator.push(
                   context,
@@ -45,8 +58,35 @@ class _HomePageState extends State<HomePage> {
             },
           ),
           ListTile(
+            onTap: () {},
+            leading: const Icon(Icons.shopping_cart),
+            title: const Text(
+              'Cart',
+              style: TextStyle(letterSpacing: 1.0),
+            ),
+          ),
+          ListTile(
+            onTap: () {},
+            leading: const Icon(Icons.phone),
+            title: const Text(
+              'Contact us',
+              style: TextStyle(letterSpacing: 1.0),
+            ),
+          ),
+          ListTile(
+            onTap: () {},
+            leading: const Icon(Icons.info),
+            title: const Text(
+              'About',
+              style: TextStyle(letterSpacing: 1.0),
+            ),
+          ),
+          ListTile(
             leading: const Icon(Icons.logout),
-            title: const Text('Log out'),
+            title: const Text(
+              'Log out',
+              style: TextStyle(letterSpacing: 1.0),
+            ),
             onTap: () {
               Navigator.push(
                   context,
@@ -75,7 +115,13 @@ class _HomePageState extends State<HomePage> {
           IconButton(
               onPressed: () {},
               icon: const Icon(
-                Icons.shopping_basket,
+                Icons.search,
+                color: Colors.black,
+              )),
+          IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.shopping_cart,
                 color: Colors.black,
               ))
         ],
@@ -88,19 +134,41 @@ class _HomePageState extends State<HomePage> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Container(
-                    margin: const EdgeInsets.symmetric(vertical: 10.0),
-                    height: 50,
-                    width: double.infinity,
-                    child: TextFormField(
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(30.0)),
-                        hintText: 'Search Something',
-                        suffixIcon: const Icon(Icons.search),
+                SizedBox(
+                  height: 200,
+                  child: CarouselSlider(
+                    enableAutoSlider: true,
+                    unlimitedMode: true,
+                    autoSliderDelay: const Duration(seconds: 5),
+                    slideIndicator: CircularSlideIndicator(
+                        indicatorBackgroundColor: Colors.white,
+                        currentIndicatorColor: Colors.blue,
+                        indicatorBorderColor: Colors.grey),
+                    children: [
+                      Image.asset(
+                        'assets/hp.jpg',
+                        fit: BoxFit.fill,
                       ),
-                    )),
-                Container(
+                      Image.asset(
+                        'assets/iphone.jpg',
+                        fit: BoxFit.contain,
+                      ),
+                    ],
+                  ),
+                ),
+                // Container(
+                //     margin: const EdgeInsets.symmetric(vertical: 10.0),
+                //     height: 50,
+                //     width: double.infinity,
+                //     child: TextFormField(
+                //       decoration: InputDecoration(
+                //         border: OutlineInputBorder(
+                //             borderRadius: BorderRadius.circular(30.0)),
+                //         hintText: 'Search Something',
+                //         suffixIcon: const Icon(Icons.search),
+                //       ),
+                //     )),
+                SizedBox(
                   width: double.infinity,
                   height: 100,
                   child: Row(
@@ -131,7 +199,7 @@ class _HomePageState extends State<HomePage> {
                         text: 'Iphone 13 pro max'),
                   ],
                 ),
-                Container(
+                SizedBox(
                   height: 100,
                   width: double.infinity,
                   child: Row(
@@ -150,7 +218,7 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                 ),
-                Container(
+                SizedBox(
                   height: 50.0,
                   width: double.infinity,
                   child: Row(
@@ -160,6 +228,25 @@ class _HomePageState extends State<HomePage> {
                       _buildproductcategory('assets/icon/mobile.png'),
                       _buildproductcategory('assets/icon/watch.png'),
                       _buildproductcategory('assets/icon/listening.png'),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 90,
+                  width: double.infinity,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: const [
+                      Text(
+                        'New Archives',
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        'See All',
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      )
                     ],
                   ),
                 ),
