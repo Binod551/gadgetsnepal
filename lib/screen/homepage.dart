@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_carousel_slider/carousel_slider_indicators.dart';
 import 'package:gadgetsnepal/screen/featured_product.dart';
 import 'package:gadgetsnepal/screen/login.dart';
-import 'package:gadgetsnepal/screen/product_list.dart';
+import 'package:gadgetsnepal/screen/archives.dart';
 import 'package:gadgetsnepal/widgets/products_widget.dart';
 import 'package:flutter_carousel_slider/carousel_slider.dart';
 
@@ -15,6 +15,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
+  late final size = MediaQuery.of(context).size;
   bool homecolor = false;
   bool cartcolor = false;
   bool contactcolor = false;
@@ -30,6 +31,37 @@ class _HomePageState extends State<HomePage> {
         child: Image(image: AssetImage(image)),
       ),
     );
+  }
+
+  Widget _buildfeatured(String image, String text, double amount) {
+    return Card(
+        elevation: 5.0,
+        child: SizedBox(
+          height: 200,
+          width: 180,
+          child: Column(
+            children: [
+              Container(
+                height: 150,
+                width: 160,
+                decoration: BoxDecoration(
+                    image: DecorationImage(image: AssetImage(image))),
+              ),
+              Text(
+                'RS.$amount}',
+                style: const TextStyle(
+                    letterSpacing: 1.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.grey),
+              ),
+              Text(
+                text,
+                style: const TextStyle(
+                    letterSpacing: 1.0, fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+        ));
   }
 
   @override
@@ -179,14 +211,14 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
       ),
       body: Container(
-          height: double.infinity,
-          width: double.infinity,
+          height: size.height,
+          width: size.width,
           margin: const EdgeInsets.symmetric(horizontal: 10.0),
           child: SingleChildScrollView(
             child: Column(
               children: [
                 SizedBox(
-                  height: 200,
+                  height: size.height * 0.25,
                   child: CarouselSlider(
                     enableAutoSlider: true,
                     unlimitedMode: true,
@@ -219,9 +251,10 @@ class _HomePageState extends State<HomePage> {
                 //         suffixIcon: const Icon(Icons.search),
                 //       ),
                 //     )),
-                SizedBox(
-                  width: double.infinity,
-                  height: 100,
+                Container(
+                  color: Colors.red,
+                  width: size.width,
+                  height: size.height * 0.1,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -234,8 +267,7 @@ class _HomePageState extends State<HomePage> {
                         onTap: () {
                           Navigator.of(context)
                               .pushReplacement(MaterialPageRoute(
-                            builder: (context) =>
-                                const FeaturedProduct(name: 'feature'),
+                            builder: (context) => FeaturedProduct(),
                           ));
                         },
                         child: const Text(
@@ -247,21 +279,22 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                 ),
-                Row(
-                  children: const [
-                    Product(
-                        amount: 2000,
-                        image: 'assets/hp.jpg',
-                        text: 'Hp notebook'),
-                    Product(
-                        amount: 40000,
-                        image: 'assets/iphone.jpg',
-                        text: 'Iphone 13 pro max'),
-                  ],
+                Container(
+                  color: Colors.blue,
+                  height: size.height * 0.3,
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      _buildfeatured('assets/hp.jpg', 'hp laptop', 20000),
+                      _buildfeatured('assets/iphone.jpg', 'Iphone', 80000),
+                      _buildfeatured('assets/iphone.jpg', 'Iphone', 80000),
+                      _buildfeatured('assets/hp.jpg', 'hp laptop', 20000),
+                    ],
+                  ),
                 ),
                 SizedBox(
-                  height: 100,
-                  width: double.infinity,
+                  height: size.height * 0.1,
+                  width: size.width,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: const [
@@ -279,10 +312,9 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 SizedBox(
-                  height: 50.0,
-                  width: double.infinity,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  height: size.height * 0.06,
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
                     children: [
                       _buildproductcategory('assets/icon/laptop.png'),
                       _buildproductcategory('assets/icon/mobile.png'),
@@ -292,8 +324,8 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 SizedBox(
-                  height: 90,
-                  width: double.infinity,
+                  height: size.height * 0.1,
+                  width: size.width,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -307,8 +339,7 @@ class _HomePageState extends State<HomePage> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) =>
-                                    const ProductList(name: 'Archive'),
+                                builder: (context) => ArchivesProduct(),
                               ));
                         },
                         child: const Text(
@@ -320,29 +351,18 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                 ),
-                Row(
-                  children: const [
-                    Product(
-                        amount: 2000,
-                        image: 'assets/hp.jpg',
-                        text: 'Hp notebook'),
-                    Product(
-                        amount: 2000,
-                        image: 'assets/hp.jpg',
-                        text: 'Hp notebook'),
-                  ],
-                ),
-                Row(
-                  children: const [
-                    Product(
-                        amount: 2000,
-                        image: 'assets/hp.jpg',
-                        text: 'Hp notebook'),
-                    Product(
-                        amount: 2000,
-                        image: 'assets/hp.jpg',
-                        text: 'Hp notebook'),
-                  ],
+                Container(
+                  width: size.width,
+                  height: size.height * 0.3,
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      _buildfeatured('assets/hp.jpg', 'hp laptop', 20000),
+                      _buildfeatured('assets/iphone.jpg', 'Iphone', 80000),
+                      _buildfeatured('assets/iphone.jpg', 'Iphone', 80000),
+                      _buildfeatured('assets/hp.jpg', 'hp laptop', 20000),
+                    ],
+                  ),
                 ),
               ],
             ),
