@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gadgetsnepal/model/products.dart';
 import 'package:gadgetsnepal/screen/homepage.dart';
+import 'package:gadgetsnepal/widgets/products_widget.dart';
 
-class FeaturedProduct extends StatelessWidget {
+class ArchivesProduct extends StatelessWidget {
   final List<ProductList> productlist = [
     ProductList(
         productname: 'Hp Laptop',
@@ -38,7 +39,7 @@ class FeaturedProduct extends StatelessWidget {
         productimage: 'assets/iphone.jpg'),
   ];
 
-  FeaturedProduct({Key? key}) : super(key: key);
+  ArchivesProduct({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -72,40 +73,7 @@ class FeaturedProduct extends StatelessWidget {
         margin: const EdgeInsets.symmetric(horizontal: 10),
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        child: GridView(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2),
-            children: productlist.map((e) {
-              return Card(
-                  elevation: 5.0,
-                  child: SizedBox(
-                    height: 200,
-                    width: 180,
-                    child: Column(
-                      children: [
-                        Container(
-                          height: 150,
-                          width: 160,
-                          decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  image: AssetImage(e.productimage))),
-                        ),
-                        Text(
-                          'RS.${e.productprice}',
-                          style: const TextStyle(
-                              letterSpacing: 1.0,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.grey),
-                        ),
-                        Text(
-                          e.productname,
-                          style: const TextStyle(
-                              letterSpacing: 1.0, fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
-                  ));
-            }).toList()),
+        child: Product(),
       ),
     );
   }
