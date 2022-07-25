@@ -3,7 +3,6 @@ import 'package:flutter_carousel_slider/carousel_slider_indicators.dart';
 import 'package:gadgetsnepal/screen/featured_product.dart';
 import 'package:gadgetsnepal/screen/login.dart';
 import 'package:gadgetsnepal/screen/archives.dart';
-import 'package:gadgetsnepal/widgets/products_widget.dart';
 import 'package:flutter_carousel_slider/carousel_slider.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,12 +14,31 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
+  Icon cusIcon = const Icon(
+    Icons.search,
+    color: Colors.black,
+  );
+  Widget cusearchbar =
+      const Text('Home', style: TextStyle(color: Colors.black));
   late final size = MediaQuery.of(context).size;
   bool homecolor = false;
   bool cartcolor = false;
   bool contactcolor = false;
   bool aboutcolor = false;
   bool logoutcolor = false;
+
+  Widget searchbar = SizedBox(
+    height: 40,
+    child: TextFormField(
+      decoration: InputDecoration(
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
+        hintText: 'Search Something',
+        suffixIcon: const Icon(Icons.search),
+        fillColor: Colors.white,
+        filled: true,
+      ),
+    ),
+  );
 
   Widget _buildproductcategory(String image) {
     return GestureDetector(
@@ -190,17 +208,29 @@ class _HomePageState extends State<HomePage> {
           icon: const Icon(Icons.menu),
           color: Colors.black,
         ),
-        title: const Text(
-          'Home',
-          style: TextStyle(color: Colors.black),
-        ),
+        title: cusearchbar,
         actions: [
           IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.search,
-                color: Colors.black,
-              )),
+            onPressed: () {
+              setState(() {
+                if (cusIcon.icon == Icons.search) {
+                  cusIcon = const Icon(
+                    Icons.cancel,
+                    color: Colors.black,
+                  );
+                  cusearchbar = searchbar;
+                } else {
+                  cusIcon = const Icon(
+                    Icons.search,
+                    color: Colors.black,
+                  );
+                  cusearchbar =
+                      const Text('Home', style: TextStyle(color: Colors.black));
+                }
+              });
+            },
+            icon: cusIcon,
+          ),
           IconButton(
               onPressed: () {},
               icon: const Icon(
@@ -239,20 +269,7 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                 ),
-                // Container(
-                //     margin: const EdgeInsets.symmetric(vertical: 10.0),
-                //     height: 50,
-                //     width: double.infinity,
-                //     child: TextFormField(
-                //       decoration: InputDecoration(
-                //         border: OutlineInputBorder(
-                //             borderRadius: BorderRadius.circular(30.0)),
-                //         hintText: 'Search Something',
-                //         suffixIcon: const Icon(Icons.search),
-                //       ),
-                //     )),
                 Container(
-                  color: Colors.red,
                   width: size.width,
                   height: size.height * 0.1,
                   child: Row(
@@ -279,8 +296,7 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                 ),
-                Container(
-                  color: Colors.blue,
+                SizedBox(
                   height: size.height * 0.3,
                   child: ListView(
                     scrollDirection: Axis.horizontal,

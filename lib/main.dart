@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:gadgetsnepal/screen/login.dart';
 
 void main() {
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
         primarySwatch: Colors.blue,
+        fontFamily: 'Lato',
       ),
       home: const MyHomePage(),
     );
